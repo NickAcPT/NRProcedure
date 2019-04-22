@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+application {
+    mainClassName = "me.nickac.nrprocedure.NrProcedureMain"
+}
+
+group 'me.nickac'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.amogilev:yagson:883e07542b'
+
+}
