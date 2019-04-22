@@ -10,7 +10,6 @@ import me.nickac.nrprocedure.clr.threads.ClrIpcReadThread;
 import me.nickac.nrprocedure.clr.threads.ClrIpcWriteThread;
 
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class ClrHostConnection {
@@ -60,7 +59,6 @@ public class ClrHostConnection {
             ipcWriteThread = new ClrIpcWriteThread(this);
 
             publishRaw(new IpcCommand(IpcCommandType.INIT));
-
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);

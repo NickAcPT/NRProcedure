@@ -3,6 +3,7 @@ package me.nickac.nrprocedure.clr.threads;
 import com.gilecode.yagson.YaGson;
 import me.nickac.nrprocedure.clr.ClrHostConnection;
 import me.nickac.nrprocedure.clr.ipc.IpcCommand;
+import me.nickac.nrprocedure.clr.ipc.IpcCommandType;
 
 import java.io.*;
 
@@ -27,18 +28,18 @@ public class ClrIpcReadThread extends Thread {
     public void run() {
 
         try {
-
             String line;
-
             while ((line = reader.readLine()) != null) {
                 IpcCommand ipcCommand = gson.fromJson(line, IpcCommand.class);
 
                 if (ipcCommand != null) {
+                    //TODO: Separate this into handlers
+                    if (ipcCommand.getCommandType() == IpcCommandType.LOG) {
+                        System.out.println(ipcCommand.getArguments()[0]);
+                    }
                     connection.getRequestCount();
-                    connection.publishRaw(ipcCommand);
                 }
 
-                System.out.println("From C#: " + line);
             }
 
         } catch (IOException ioe) {

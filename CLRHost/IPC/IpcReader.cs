@@ -1,9 +1,7 @@
 using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace CLRHost.IPC.Readers
+namespace CLRHost.IPC
 {
     public class IpcReader
     {
@@ -25,11 +23,8 @@ namespace CLRHost.IPC.Readers
                 if (command != null)
                 {
                     _service.IncrementRequestCounter();
-                    //TODO: Command handling
-                    
-                    _service.PublishRaw(command);
+                    _service.InvokeHandler(command.CommandType, command);
                 }
-
             }
         }
     }

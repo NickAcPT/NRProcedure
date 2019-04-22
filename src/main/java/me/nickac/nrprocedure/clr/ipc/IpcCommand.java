@@ -2,6 +2,7 @@ package me.nickac.nrprocedure.clr.ipc;
 
 public class IpcCommand {
     private long requestId;
+    private long requestReplyId = -1;
     private IpcCommandType commandType;
     private Object[] arguments;
 
@@ -12,6 +13,14 @@ public class IpcCommand {
     public IpcCommand(IpcCommandType commandType, Object[] arguments) {
         this.commandType = commandType;
         this.arguments = arguments;
+    }
+
+    public long getRequestReplyId() {
+        return requestReplyId;
+    }
+
+    public void setRequestReplyId(long requestReplyId) {
+        this.requestReplyId = requestReplyId;
     }
 
     public long getRequestId() {
